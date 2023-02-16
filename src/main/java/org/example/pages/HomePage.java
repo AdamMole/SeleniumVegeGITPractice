@@ -40,6 +40,7 @@ public class HomePage extends BasePage {
         System.out.println(productNamesText);
         System.out.println(names);
         System.out.println("Random sout for GIT training on master and feature_branch");
+        System.out.println("Second sout on feature_branch");
         return productNamesText;
     }
 
