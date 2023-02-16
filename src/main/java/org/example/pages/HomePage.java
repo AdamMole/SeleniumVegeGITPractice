@@ -29,6 +29,7 @@ public class HomePage extends BasePage {
     private WebElement proceedToCheckoutButton;
 
     public List<String> getProductByName(String productName) {
+        System.out.println("Second random sout for GIT training on master");
 //        WebElement product = productNames.stream().filter(p ->
 //                p.findElement(By.cssSelector("h4")).getText().contains(productName))
 //                .findFirst()
