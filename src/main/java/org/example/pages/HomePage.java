@@ -38,6 +38,7 @@ public class HomePage extends BasePage {
         String names = productNames.stream().map(name -> name.getAttribute("textContent")).filter(name -> name.contains(productName)).findFirst().orElse(null);
         System.out.println(productNamesText);
         System.out.println(names);
+        System.out.println("Random sout for GIT training on master");
         return productNamesText;
     }
 
