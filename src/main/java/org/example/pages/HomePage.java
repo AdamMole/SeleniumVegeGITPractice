@@ -1,5 +1,6 @@
 package org.example.pages;
 
+import io.qameta.allure.Step;
 import org.example.utility.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -39,16 +40,19 @@ public class HomePage extends BasePage {
         String names = productNames.stream().map(name -> name.getAttribute("textContent")).filter(name -> name.contains(productName)).findFirst().orElse(null);
         System.out.println(productNamesText);
         System.out.println(names);
-        System.out.println("Random sout for GIT training on master");
+        System.out.println("Random sout for GIT training on master and feature_branch");
+        System.out.println("Second sout on feature_branch");
         return productNamesText;
     }
 
+    @Step("STEP: Check if product is visible")
     public boolean isProductVisible(String productName) {
         webDriverWait.until(ExpectedConditions.visibilityOf(cartButton));
-        Boolean result = productNames.stream().anyMatch(p -> p.getText().contains(productName));
+        boolean result = productNames.stream().anyMatch(p -> p.getText().contains(productName));
         return result;
     }
 
+    @Step("STEP: Add product to cart")
     public HomePage addProductToCart(String productName) {
         for (int i = 0; i < productNames.size(); i++){
             String name = productNames.get(i).getText();
@@ -59,6 +63,7 @@ public class HomePage extends BasePage {
         return  this;
     }
 
+    @Step("STEP: Add two products to cart")
     public void addTwoProductsToCart(String firstProduct, String secondProduct){
         for (int i = 0; i < productNames.size(); i++){
             String name = productNames.get(i).getText();
@@ -68,6 +73,7 @@ public class HomePage extends BasePage {
         }
     }
 
+    @Step("STEP: Add couple products to cart")
     public void addCoupleDeclaredProducts() {
         List<String> products = Arrays.asList("Cucumber", "Tomato", "Pumpkin");
         System.out.println(products);
@@ -80,6 +86,7 @@ public class HomePage extends BasePage {
         }
     }
 
+    @Step("STEP: Go to checkout")
     public CheckoutPage goToCheckout(){
         cartButton.click();
         proceedToCheckoutButton.click();

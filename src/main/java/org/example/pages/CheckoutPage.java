@@ -1,5 +1,6 @@
 package org.example.pages;
 
+import io.qameta.allure.Step;
 import org.example.utility.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,12 +25,14 @@ public class CheckoutPage extends BasePage {
     @FindBy(css = "button")
     private WebElement proceedButton;
 
+    @Step("STEP: Place order")
     public CheckoutPage placeOrder() {
         webDriverWait.until(ExpectedConditions.visibilityOf(placeOrderButton));
         placeOrderButton.click();
         return this;
     }
 
+    @Step("STEP: Select country")
     public CheckoutPage selectCountry(String countryy) {
         Select country = new Select(selectCountry);
         country.selectByValue(countryy);
@@ -37,6 +40,7 @@ public class CheckoutPage extends BasePage {
         return this;
     }
 
+    @Step("STEP: Proceed order")
     public OrderPage proceedOrder() {
         webDriverWait.until(ExpectedConditions.visibilityOf(proceedButton));
         proceedButton.click();
