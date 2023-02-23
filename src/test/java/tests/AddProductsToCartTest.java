@@ -8,7 +8,8 @@ import java.io.IOException;
 
 public class AddProductsToCartTest extends BaseTest {
 
-    @Test
+    @Test(priority = 1, description = "Test description if product is visible")
+    @io.qameta.allure.Description("DESCRIPTION: Check if product is visible")
     public void isProductVisibleTest() throws IOException {
         boolean result = launchApplication().isProductVisible("Tomato");
         Assert.assertTrue(result);
