@@ -1,2 +1,4 @@
 org\example\pages\HomePage.class
+org\example\pages\OrderPage.class
+org\example\pages\CheckoutPage.class
 org\example\utility\BasePage.class
