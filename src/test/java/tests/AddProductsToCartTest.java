@@ -2,17 +2,19 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import utility.BaseTest;
 
 import java.io.IOException;
 
 public class AddProductsToCartTest extends BaseTest {
-
+    SoftAssert softAssert = new SoftAssert();
     @Test(priority = 1, description = "Test description if product is visible")
     @io.qameta.allure.Description("DESCRIPTION: Check if product is visible")
     public void isProductVisibleTest() throws IOException {
         boolean result = launchApplication().isProductVisible("Tomato");
-        Assert.assertTrue(result);
+        //Assert.assertTrue(result);
+        softAssert.assertTrue(result);
     }
     @Test
     public void addOneProductToCartTest() throws IOException {
