@@ -5,15 +5,17 @@ import org.example.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import static utility.BaseTest.getDriver;
+
 public class BaseTest {
 
     public WebDriver driver;
+    public static ThreadLocal<WebDriver> tdriver = new ThreadLocal<>();
 
     public WebDriver initializeDriver() throws IOException {
         Properties properties = new Properties();
@@ -24,18 +26,23 @@ public class BaseTest {
         if(browserName.equalsIgnoreCase("chrome")){
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
+            tdriver.set(driver);
         } else if (browserName.equalsIgnoreCase("firefox")) {
         //Provide the path for firefox
         }
 
         driver.manage().window().maximize();
-        return driver;
+        return getDriver();
     }
 
     public HomePage launchApplication() throws IOException {
         driver = initializeDriver();
         driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
         return new HomePage(driver);
+    }
+
+    public static synchronized WebDriver getDriver(){
+        return tdriver.get();
     }
 
     @AfterMethod
